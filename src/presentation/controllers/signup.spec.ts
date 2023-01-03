@@ -4,17 +4,30 @@ import { SignupController } from './signup';
 
 interface SutTypes {
     sut: SignupController;
-    emailValidatorStub: EmailValidatorStub;
+    emailValidatorStub: EmailValidator;
 }
 
-class EmailValidatorStub implements EmailValidator {
-    isValid(email: string): boolean {
-        return true;
+const makeEmailValidator = (): EmailValidator => {
+    class EmailValidatorStub implements EmailValidator {
+        isValid(email: string): boolean {
+            return true;
+        }
     }
-}
+
+    return new EmailValidatorStub();
+};
+
+const makeEmailValidatorWithError = (): EmailValidator => {
+    class EmailValidatorStub implements EmailValidator {
+        isValid(email: string): boolean {
+            throw new Error();
+        }
+    }
+    return new EmailValidatorStub();
+};
 
 const makeSut = (): SutTypes => {
-    const emailValidatorStub = new EmailValidatorStub();
+    const emailValidatorStub = makeEmailValidator();
     const sut = new SignupController(emailValidatorStub);
     return {
         sut,
@@ -113,12 +126,7 @@ describe('Signup controller', () => {
     });
 
     test('should return 500 if EmailValidator throws', () => {
-        class EmailValidatorStub implements EmailValidator {
-            isValid(email: string): boolean {
-                throw new Error();
-            }
-        }
-        const emailValidatorStub = new EmailValidatorStub();
+        const emailValidatorStub = makeEmailValidatorWithError();
         const sut = new SignupController(emailValidatorStub);
         const httpRequest = {
             body: {
