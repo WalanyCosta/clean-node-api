@@ -1,7 +1,10 @@
-import { AccountModel } from '../../domain/models/account-model';
-import { AddAccount, AddAccountModel } from '../../domain/usecases/add-account';
+import {
+    AccountModel,
+    AddAccount,
+    AddAccountModel,
+    EmailValidator,
+} from './signup-protocols';
 import { MissingParamError, InvalidParamError, ServerError } from '../errors';
-import { EmailValidator } from '../protocols';
 import { SignupController } from './signup';
 
 interface SutTypes {
