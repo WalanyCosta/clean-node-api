@@ -11,6 +11,10 @@ export const connect = async (uriParam = '') => {
     await mongoose.connect(uri);
 };
 
+export const cleanData = async () => {
+    await mongoose.connection.db.dropDatabase();
+};
+
 export const disconnect = async () => {
     await mongoose.disconnect();
     if (mongoDb) await mongoDb?.stop();

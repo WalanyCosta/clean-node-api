@@ -2,12 +2,16 @@ import { AccountMongoRepository } from './account';
 import * as MongooseHelper from '../helpers/mongoose-helper';
 
 describe('Account Mongo Repository', () => {
-    beforeAll(() => {
-        MongooseHelper.connect();
+    beforeAll(async () => {
+        await MongooseHelper.connect();
     });
 
-    afterAll(() => {
-        MongooseHelper.disconnect();
+    afterAll(async () => {
+        await MongooseHelper.disconnect();
+    });
+
+    beforeEach(async () => {
+        await MongooseHelper.cleanData();
     });
 
     const makeSut = (): AccountMongoRepository => {
@@ -24,7 +28,6 @@ describe('Account Mongo Repository', () => {
         expect(account).toBeTruthy();
         expect(account.id).toBeTruthy();
         expect(account.name).toBe('any_name');
-        console.log(account.name);
         expect(account.email).toBe('any_email@mail.com');
         expect(account.password).toBe('any_password');
     });
