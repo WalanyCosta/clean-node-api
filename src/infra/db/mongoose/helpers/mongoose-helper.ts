@@ -13,5 +13,5 @@ export const connect = async (uriParam = '') => {
 
 export const disconnect = async () => {
     await mongoose.disconnect();
-    await mongoDb?.stop();
+    if (mongoDb) await mongoDb?.stop();
 };
