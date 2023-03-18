@@ -6,6 +6,11 @@ export class AccountMongoRepository {
     async add(accountData: AddAccountModel): Promise<AccountModel> {
         const account = new AccountMongoose(accountData);
         const result = await account.save();
-        return result as AccountModel;
+        return {
+            id: result._id.toString(),
+            name: result.name,
+            email: result.email,
+            password: result.password,
+        };
     }
 }
