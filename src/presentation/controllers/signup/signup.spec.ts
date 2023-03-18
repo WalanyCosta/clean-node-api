@@ -4,7 +4,11 @@ import {
     AddAccountModel,
     EmailValidator,
 } from './signup-protocols';
-import { MissingParamError, InvalidParamError, ServerError } from '../errors';
+import {
+    MissingParamError,
+    InvalidParamError,
+    ServerError,
+} from '../../errors';
 import { SignupController } from './signup';
 
 interface SutTypes {
