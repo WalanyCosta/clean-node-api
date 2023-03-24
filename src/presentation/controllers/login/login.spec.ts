@@ -97,7 +97,7 @@ describe('Login Controller', () => {
         expect(httpResponse).toEqual(serverError(new Error(null)));
     });
 
-    test('should return 500 if EmailValidator throws', async () => {
+    test('should call authentication with correct values', async () => {
         const { sut, authenticationStub } = makeSut();
         const authSpy = jest.spyOn(authenticationStub, 'auth');
         await sut.handle(makeFakeRequest());
