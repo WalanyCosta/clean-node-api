@@ -146,7 +146,7 @@ describe('Signup controller', () => {
         jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false);
         const httpResponse = await sut.handle(makeFakeRequest());
         expect(httpResponse).toEqual(
-            badRequest(new InvalidParamError('email')),
+            badRequest(new InvalidParamError('any_email@gmail.com')),
         );
     });
 
