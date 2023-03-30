@@ -1,7 +1,7 @@
-import { MissingParamError } from '../../errors';
+import { InvalidParamError } from '../../errors';
 import { Validation } from './validation';
 
-export class CompareFieldComposite implements Validation {
+export class CompareFieldValidation implements Validation {
     private readonly fieldName: string;
     private readonly fieldCompareName: string;
 
@@ -12,7 +12,7 @@ export class CompareFieldComposite implements Validation {
 
     validate(input: any): Error {
         if (input[this.fieldName] !== input[this.fieldCompareName]) {
-            return new MissingParamError(this.fieldName);
+            return new InvalidParamError(this.fieldName);
         }
     }
 }

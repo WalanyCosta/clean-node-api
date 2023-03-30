@@ -1,5 +1,4 @@
 import { SignupController } from '../../presentation/controllers/signup/signup';
-import { EmailValidatorAdapter } from './../../utils/email-validator-adapter';
 import { DbAddAccount } from './../../data/usecase/add-account/db-add-account';
 import { BcryptAdapter } from './../../infra/cryptography/bcrypt-adapter';
 import { AccountMongoRepository } from './../../infra/db/mongoose/account-repository/account';
@@ -17,9 +16,7 @@ export const makeSignUpController = (): Controller => {
         accountMongoRepository,
     );
     const validationComposite = makeSignUpValidation();
-    const emailValidatorAdapter = new EmailValidatorAdapter();
     const signupController = new SignupController(
-        emailValidatorAdapter,
         dbAddAccount,
         validationComposite,
     );
