@@ -64,4 +64,14 @@ describe('Bcrypt Adapter', () => {
         const promise = sut.compare('any_value', 'hash_value');
         await expect(promise).rejects.toThrow();
     });
+
+    test('should return a false if wrong values', async () => {
+        const sut = makeSut();
+        const mockedCompare = bcrypt.compare as jest.Mock<any, any>;
+        mockedCompare.mockReturnValueOnce(
+            new Promise((resolve, reject) => resolve(false)),
+        );
+        const hash = await sut.compare('wrong_value', 'hash_value');
+        expect(hash).toBeFalsy();
+    });
 });
