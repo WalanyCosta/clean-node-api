@@ -1,9 +1,12 @@
+import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/load-account-by-email-repository';
 import { AccountModel } from '../../../../domain/models/account-model';
 import { AddAccountModel } from '../../../../domain/usecases/add-account';
 import { AccountMongoose } from '../model/account-mongo-model';
 import { AddAccountRepository } from './../../../../data/protocols/db/add-account-repository';
 
-export class AccountMongoRepository implements AddAccountRepository {
+export class AccountMongoRepository
+    implements AddAccountRepository, LoadAccountByEmailRepository
+{
     async add(accountData: AddAccountModel): Promise<AccountModel> {
         const account = new AccountMongoose(accountData);
         const result = await account.save();
@@ -13,5 +16,17 @@ export class AccountMongoRepository implements AddAccountRepository {
             email: result.email,
             password: result.password,
         };
+    }
+
+    async loadByEmail(email: string): Promise<AccountModel> {
+        const account = await AccountMongoose.findOne({ email });
+        return (
+            account && {
+                id: account._id.toString(),
+                name: account.name,
+                email: account.email,
+                password: account.password,
+            }
+        );
     }
 }
