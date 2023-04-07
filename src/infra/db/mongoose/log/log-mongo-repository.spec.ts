@@ -1,6 +1,6 @@
 import * as MongooseHelper from '../helpers/mongoose-helper';
 import { ErrorMongoose } from '../model/log-mongo-model';
-import { LogMongoRepository } from './log';
+import { LogMongoRepository } from './log-mongo-repository';
 
 const makeSut = (): LogMongoRepository => {
     return new LogMongoRepository();

@@ -1,4 +1,4 @@
-import { AccountMongoRepository } from './account';
+import { AccountMongoRepository } from './account-mongo-repository';
 import * as MongooseHelper from '../helpers/mongoose-helper';
 import { AccountMongoose } from '../model/account-mongo-model';
 

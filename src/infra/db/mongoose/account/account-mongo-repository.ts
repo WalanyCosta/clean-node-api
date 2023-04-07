@@ -1,9 +1,9 @@
-import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/load-account-by-email-repository';
-import { UpdateAccessTokenGenerator } from '../../../../data/protocols/db/update-access-token-generator';
+import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/account/load-account-by-email-repository';
+import { UpdateAccessTokenGenerator } from '../../../../data/protocols/db/account/update-access-token-generator';
 import { AccountModel } from '../../../../domain/models/account-model';
 import { AddAccountModel } from '../../../../domain/usecases/add-account';
 import { AccountMongoose } from '../model/account-mongo-model';
-import { AddAccountRepository } from './../../../../data/protocols/db/add-account-repository';
+import { AddAccountRepository } from '../../../../data/protocols/db/account/add-account-repository';
 import * as MongooseHelper from '../helpers/mongoose-helper';
 
 export class AccountMongoRepository
