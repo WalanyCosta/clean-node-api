@@ -1,11 +1,15 @@
 import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/load-account-by-email-repository';
+import { UpdateAccessTokenGenerator } from '../../../../data/protocols/db/update-access-token-generator';
 import { AccountModel } from '../../../../domain/models/account-model';
 import { AddAccountModel } from '../../../../domain/usecases/add-account';
 import { AccountMongoose } from '../model/account-mongo-model';
 import { AddAccountRepository } from './../../../../data/protocols/db/add-account-repository';
 
 export class AccountMongoRepository
-    implements AddAccountRepository, LoadAccountByEmailRepository
+    implements
+        AddAccountRepository,
+        LoadAccountByEmailRepository,
+        UpdateAccessTokenGenerator
 {
     async add(accountData: AddAccountModel): Promise<AccountModel> {
         const account = new AccountMongoose(accountData);
@@ -27,6 +31,13 @@ export class AccountMongoRepository
                 email: account.email,
                 password: account.password,
             }
+        );
+    }
+
+    async updateAccessToken(id: string, token: string): Promise<void> {
+        await AccountMongoose.updateOne(
+            { _id: id },
+            { $set: { accessToken: token } },
         );
     }
 }
