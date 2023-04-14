@@ -21,6 +21,7 @@
         "prettier/prettier": "error",
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/consistent-type-definitions": "off",
-        "no-useless-constructor": "off"
+        "no-useless-constructor": "off",
+        "node/no-path-concat": "off"
     }
 }
