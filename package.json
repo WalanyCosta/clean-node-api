@@ -3,7 +3,12 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": 18
+  },
   "scripts": {
+    "start": "node dist/main/server.js",
+    "build": "rimraf dist && tsc",
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests",
@@ -39,6 +44,7 @@
     "lint-staged": "^13.1.0",
     "mongodb-memory-server": "^8.12.0",
     "prettier": "2.8.1",
+    "rimraf": "^5.0.0",
     "sucrase": "^3.29.0",
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.5",
@@ -47,7 +53,6 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "express": "^4.18.2",
-    "fast-glob": "^3.2.12",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.2",
     "validator": "^13.7.0"

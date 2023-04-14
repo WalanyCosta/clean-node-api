@@ -14,13 +14,14 @@
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": "./tsconfig.json"
+        "project": "./tsconfig.eslint.json"
     },
     "plugins": ["prettier"],
     "rules": {
         "prettier/prettier": "error",
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/consistent-type-definitions": "off",
-        "no-useless-constructor": "off"
+        "no-useless-constructor": "off",
+        "node/no-path-concat": "off"
     }
 }
