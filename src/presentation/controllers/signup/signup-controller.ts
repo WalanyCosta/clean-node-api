@@ -10,8 +10,8 @@ import {
     HttpResponse,
     Controller,
     AddAccount,
-    Validation,
     Authentication,
+    Validation,
 } from './signup-controller-protocols';
 
 export class SignupController implements Controller {
